@@ -11,5 +11,5 @@ class PlayerController:
         gender = CreatePlayer().gender_entrie()
 
         """Serialized entries"""
-        player_entrie = Player(name, first_name, birthday, gender)
-        player_entrie.get_serialized_player()
+        player_entries = Player(name, first_name, birthday, gender)
+        player_entries.get_serialized_player()
