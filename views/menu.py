@@ -21,6 +21,8 @@ class MainMenu:
         table.add_row("")
         table.add_row("[#F94144]4 -[/] Données")
         table.add_row("")
+        table.add_row("[#F94144]5 -[/] Quitter le programme")
+        table.add_row("")
         console.print(table, justify="center")
         menu_choice = int(console.input("[#277DA1]Entrez votre choix: "))
 

@@ -1,6 +1,9 @@
 from views.menu import MainMenu
 from controllers.player import PlayerController
 from controllers.tournament import TournamentController
+from controllers.turn import TurnController
+from models.tournament import Tournament
+
 
 from tinydb import TinyDB
 
@@ -20,8 +23,9 @@ class MenuController:
                 TournamentController().create_tournament()
 
             elif choice == 3:
-                input('te')
-                db = TinyDB("db_player.json")
-                players_table = db.table("players")
-                players = players_table.all()
+                os.system('cls' if os.name == 'nt' else 'clear')
+                TurnController().turn()
 
+            elif choice == 5:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                break

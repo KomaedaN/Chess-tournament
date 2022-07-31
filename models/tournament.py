@@ -28,3 +28,15 @@ class Tournament:
             "number_of_rounds": self.number_of_rounds
         }
         tournaments_table.insert(serialized_tournament)
+
+    @staticmethod
+    def get_tournaments_data():  # get tournaments data
+        tournaments_data = []
+        for i in range(len(tournaments_table)):
+            list_tournament = []
+            list_tournament.append(tournaments[i]["id"])
+            list_tournament.append(tournaments[i]["name"])
+            list_tournament.append(tournaments[i]["description"])
+            list_tournament.append(tournaments[i]["number_of_rounds"])
+            tournaments_data.append(list_tournament)
+        return tournaments_data
