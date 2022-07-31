@@ -1,5 +1,6 @@
 from rich.console import Console
 from rich import print
+from rich.table import Table
 
 import re
 
@@ -76,3 +77,13 @@ class CreatePlayer:
                     return gender
             except Exception as FormatError:
                 print('[bold red]Vous devez sélectionner entre [#d90429]M[/] et [#d90429]F[/] uniquement')
+
+    def display_players(self, players_table_data):
+        table = Table()
+        table.add_column("[italic #F8961E]Id[/]", justify="left", style="#F94144")
+        table.add_column("[italic #F8961E]Joueurs[/]", justify="left", style="#277DA1")
+        table.add_column("[italic #F8961E]rang[/]", justify="center", style="#277DA1")
+        for i in range(len(players_table_data)):
+            table.add_row(f"{players_table_data[i][0]}", f"{players_table_data[i][1]}   {players_table_data[i][2]}",
+                          f"{players_table_data[i][3]}")
+        console.print(table, justify="center")

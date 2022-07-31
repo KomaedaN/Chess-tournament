@@ -65,8 +65,36 @@ class NewTournament:
             else:
                 print("[bold red]vous devez choisir entre [bold green]'1'[/] [bold green]'2'[/] [bold green]'3'[/].")
 
-    def selected_players_id_entrie(self):
-        pass
+    def selected_players_id_entrie(self, players_data):  # get all selected players id inside a list and verify error
+        id_list = []
+        selected_players_list = []
+        for i in range(len(players_data)):  # get all players id inside a list
+            id = int(players_data[i][0])
+            id_list.append(id)
+        while True:  # repeat input until you stop
+            try:
+                id = int(console.input(f"sélectionner l'id des participants (saisir '[bold blue]0[/]' quand tous les "
+                                       f"joueurs sont séléctionnés): "))
+                id_len = len(selected_players_list)
+                if id == 0:
+                    if id_len % 2 == 0:  # verify if selected players list is a pair number
+                        return selected_players_list
+                    raise LenError
+                elif id not in id_list:  # error if id entrie is not inside players db
+                    raise IndexError
+                selected_players_list.append(id)
+            except ValueError:
+                console.print("[bold red]Vous devez saisir un id valide")
+            except IndexError:
+                console.print("[bold red]Vous devez saisir un id dans la liste")
+            except Exception as LenError:
+                console.print("[bold red]Vous devez saisir un nombre paire de joueurs avant de pouvoir valider")
 
-    def number_of_rounds_entrie(self):
-        pass
+    def number_of_rounds_entrie(self, maximum_rounds):  # verify maxmimum rounds numbers with maximum rounds
+        while True:
+            number_of_rounds = int(console.input(f"[blue]Entrez le nombre de [bold green]TOURS[/] du tournoi (maximum "
+                                                 f"[bold blue]{maximum_rounds}[/]) : "))
+            if number_of_rounds > maximum_rounds:
+                console.print(f"[bold red]Vous ne pouvez pas séléctionner plus de {maximum_rounds} tours")
+            else:
+                return number_of_rounds

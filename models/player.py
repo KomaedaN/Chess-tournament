@@ -31,3 +31,16 @@ class Player:
 
     def update_players_rank(self):  # update rank based on elo
         pass
+
+    @staticmethod
+    def get_players_data():  # get players data for tournament creation
+        players_data = []
+        for i in range(len(players_table)):
+            list_players = []
+            list_players.append(players[i]["id"])
+            list_players.append(players[i]["name"])
+            list_players.append(players[i]["first_name"])
+            list_players.append(players[i]["rank"])
+            players_data.append(list_players)
+        return players_data
+
