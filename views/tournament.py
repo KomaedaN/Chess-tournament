@@ -92,7 +92,8 @@ class NewTournament:
             except Exception as LenError:
                 console.print("[bold red]Vous devez saisir un nombre paire de joueurs avant de pouvoir valider")
 
-    def number_of_rounds_entrie(self, maximum_rounds):  # verify maxmimum rounds numbers with maximum rounds
+    def number_of_rounds_entrie(self, rounds):  # verify maxmimum rounds numbers with maximum rounds
+        maximum_rounds = rounds - 1
         while True:
             number_of_rounds = int(console.input(f"[blue]Entrez le nombre de [bold green]TOURS[/] du tournoi (maximum "
                                                  f"[bold blue]{maximum_rounds}[/]) : "))
@@ -111,3 +112,19 @@ class NewTournament:
             table.add_row(f"{tournaments_data[i][0]}", f"{tournaments_data[i][1]}", f"{tournaments_data[i][2]}",
                           f"{tournaments_data[i][3]}")
         console.print(table, justify="center")
+
+    def selected_tournament(self, tournaments_id):
+        while True:
+            id_entrie = console.input("[blue]Sélectionner l'id du tournoi pour le démarrer: ")
+            try:
+                id = int(id_entrie)
+                if id not in tournaments_id:
+                    raise IndexError
+                return id
+            except ValueError:
+                console.print("[bold red]Vous devez sélectionner un id valide")
+            except IndexError:
+                console.print("[bold red]Vous devez sélectionner un id dans la liste")
+
+    def get_players_name_from_tournament(self):
+        pass

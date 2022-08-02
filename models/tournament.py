@@ -1,13 +1,14 @@
-from tinydb import TinyDB
+from tinydb import TinyDB, Query
+
+User = Query()
 
 db = TinyDB("db_tournament.json")
 tournaments_table = db.table("tournaments")
-tournaments = tournaments_table.all()
 
 
 class Tournament:
     def __init__(self, name, place, date, description="", time_control="", selected_players=[], number_of_rounds=4):
-        self.id = (len(TinyDB("db_tournament.json").table("tournaments")) + 1)
+        self.id = (len(tournaments_table) + 1)
         self.name = name
         self.place = place
         self.date = date
@@ -31,6 +32,7 @@ class Tournament:
 
     @staticmethod
     def get_tournaments_data():  # get tournaments data
+        tournaments = tournaments_table.all()
         tournaments_data = []
         for i in range(len(tournaments_table)):
             list_tournament = []
@@ -40,3 +42,17 @@ class Tournament:
             list_tournament.append(tournaments[i]["number_of_rounds"])
             tournaments_data.append(list_tournament)
         return tournaments_data
+
+    @staticmethod
+    def get_tournaments_id():  # get tournaments data
+        tournaments = tournaments_table.all()
+        tournaments_id = []
+        for i in range(len(tournaments_table)):
+            tournaments_id.append(tournaments[i]["id"])
+        return tournaments_id
+
+    @staticmethod
+    def get_selected_players_id(tournament_id):
+        selected_tournament = tournaments_table.search(User.id == tournament_id)
+        players_id = selected_tournament[0]['selected_players']
+        return players_id
