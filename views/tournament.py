@@ -106,7 +106,7 @@ class NewTournament:
         table = Table()
         table.add_column("[italic #F8961E]Id[/]", justify="left", style="#F94144")
         table.add_column("[italic #F8961E]Nom du tournoi[/]", justify="left", style="#277DA1")
-        table.add_column("[italic #F8961E]Description[/]", justify="center", style="#277DA1")
+        table.add_column("[italic #F8961E]Temps[/]", justify="center", style="#277DA1")
         table.add_column("[italic #F8961E]Tour[/]", justify="center", style="#277DA1")
         for i in range(len(tournaments_data)):
             table.add_row(f"{tournaments_data[i][0]}", f"{tournaments_data[i][1]}", f"{tournaments_data[i][2]}",

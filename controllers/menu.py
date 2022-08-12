@@ -2,6 +2,7 @@ from views.menu import MainMenu
 from controllers.player import PlayerController
 from controllers.tournament import TournamentController
 from controllers.turn import TurnController
+from controllers.stats import StatsController
 from models.tournament import Tournament
 
 
@@ -25,6 +26,10 @@ class MenuController:
             elif choice == 3:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 TurnController().turn()
+
+            elif choice == 4:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                StatsController().menu()
 
             elif choice == 5:
                 os.system('cls' if os.name == 'nt' else 'clear')

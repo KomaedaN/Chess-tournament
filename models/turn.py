@@ -7,7 +7,7 @@ turns_table = db.table("turns")
 
 
 class Turn:
-    def __init__(self, tournament_id, selected_players_id, match_id=[], number_of_turn=1):  # turns table
+    def __init__(self, tournament_id, selected_players_id, number_of_turn, match_id=[]):  # turns table
         self.id = (len(turns_table) + 1)
         turn = turns_table.search(User.tournament_id == tournament_id)
         self.current_turn = (len(turn) + 1)
@@ -29,16 +29,16 @@ class Turn:
 
     @staticmethod
     def get_current_turn(current_tournament):
+        turns_table.all()
         selected_tournament = turns_table.search(User.tournament_id == current_tournament)
-        current_turn = selected_tournament[0]['number_of_turn']
+        current_turn = selected_tournament[-1]['current_turn']
         return current_turn
 
     @staticmethod
     def get_id_from_current_turn(current_tournament, current_turn):
         selected_tournament = turns_table.search(User.tournament_id == current_tournament)
-        for i in range(len(selected_tournament)):
-            if int(selected_tournament[i]['current_turn']) == current_turn:
-                return selected_tournament[i]['id']
+        current_id = selected_tournament[-1]['id']
+        return current_id
 
     @staticmethod
     def update_match_id(match_id_per_turn, turn_id):

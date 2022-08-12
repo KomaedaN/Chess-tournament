@@ -38,7 +38,7 @@ class Tournament:
             list_tournament = []
             list_tournament.append(tournaments[i]["id"])
             list_tournament.append(tournaments[i]["name"])
-            list_tournament.append(tournaments[i]["description"])
+            list_tournament.append(tournaments[i]["time_control"])
             list_tournament.append(tournaments[i]["number_of_rounds"])
             tournaments_data.append(list_tournament)
         return tournaments_data
@@ -52,7 +52,7 @@ class Tournament:
         return tournaments_id
 
     @staticmethod
-    def get_selected_players_id(tournament_id):
+    def get_data_from_tournament_id(tournament_id, index):
         selected_tournament = tournaments_table.search(User.id == tournament_id)
-        players_id = selected_tournament[0]['selected_players']
-        return players_id
+        data = selected_tournament[0][index]
+        return data
