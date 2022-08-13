@@ -2,14 +2,14 @@ from rich.console import Console
 from rich import print
 from rich.table import Table
 from models.player import Player
-
+from models.match import Match
 import re
 
 console = Console()
 
 
 class Turns:
-    def display_turns(self, players, current_turn, match_number):
+    def display_turns(self, players, current_turn, match_number, match_id):
         table = Table()
         table.add_column(f"[#F3722C]Tour {current_turn}[/]", justify="center", style="#277DA1")
         for i in range(match_number):
@@ -23,9 +23,9 @@ class Turns:
         console.print(table, justify="center")
         for i in range(match_number):
             current_match = i + 1
-            Turns().score_result(current_match, players, i)
+            Turns().score_result(current_match, players, i, match_id)
 
-    def score_result(self, current_match, players, i):
+    def score_result(self, current_match, players, i, match_id):
         regex = "[^VDNvdn]"
         while True:
             player = players[i]
@@ -39,6 +39,7 @@ class Turns:
                 else:
                     score_number = Turns().convert_to_point(first_result_entrie)
                     Player.update_player_score(player[0], score_number)
+                    Match.update_players_score(player[0], score_number, match_id[i], 'player_1_result')
                     break
             except Exception as FormatError:
                 print('[bold red]Vous devez saisir [#d90429]V[/], [#d90429]D[/] ou [#d90429]N[/] uniquement')
@@ -60,6 +61,7 @@ class Turns:
                 else:
                     score_number = Turns().convert_to_point(second_result_entrie)
                     Player.update_player_score(player[1], score_number)
+                    Match.update_players_score(player[0], score_number, match_id[i], 'player_2_result')
                     break
             except ValueError:
                 console.print('[bold red]Vous devez saisir [#d90429]V[/], [#d90429]D[/] ou [#d90429]N[/] uniquement')

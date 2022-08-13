@@ -91,3 +91,32 @@ class Match:
         current_match = match_table.search(User.id == id)
         current_turn = current_match[0]['current_match']
         return current_match
+
+    @staticmethod
+    def verify_tournament_id(id):
+        match = match_table.search(User.tournament_id == id)
+        if len(match) <= 0:
+            input("Ce tournoi n'a pas encore commencé")
+        else:
+            list = []
+            for i in range(len(match)):
+                reset_list = []
+                current_match = match[i]['current_match']
+                player_1 = match[i]['player_1_name']
+                player_1_result = match[i]['player_1_result']
+                player_2 = match[i]['player_2_name']
+                player_2_result = match[i]['player_2_result']
+                reset_list.append(current_match)
+                reset_list.append(player_1)
+                reset_list.append(player_1_result)
+                reset_list.append(player_2)
+                reset_list.append(player_2_result)
+                list.append(reset_list)
+            return list
+
+
+    @staticmethod
+    def update_players_score(player_name, player_result, match_id, index):
+        match = match_table.search(User.id == match_id)
+        match_score = match[0][index] + player_result
+        match_table.update({index: match_score}, User.id == match_id)

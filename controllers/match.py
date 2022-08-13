@@ -28,4 +28,4 @@ class MatchController:
         players_name = Match.get_name(match_id)
 
         """Display matchs"""
-        Turns().display_turns(players_name, current_turn, match_number)
+        Turns().display_turns(players_name, current_turn, match_number, match_id)

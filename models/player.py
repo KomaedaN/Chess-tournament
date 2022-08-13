@@ -145,3 +145,12 @@ class Player:
     def reset_player_score(player_id):
         for i in range(len(player_id)):
             players_table.update({'score': 0.0}, User.id == player_id[i])
+
+    @staticmethod
+    def get_name_from_id_list(players_id):
+        list = []
+        for i in range(len(players_id)):
+            selected_player = players_table.search(User.id == players_id[i])
+            current_choice = selected_player[0]['name']
+            list.append(current_choice)
+        return list

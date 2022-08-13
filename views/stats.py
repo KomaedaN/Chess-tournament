@@ -20,6 +20,7 @@ class Stats:
         return menu_choice
 
     """Display players stats"""
+
     def display_players(self):
         menu_table = Table()
         menu_table.add_column("[#F8961E]Joueurs[/]", justify="left", style="#90BE6D")
@@ -71,6 +72,7 @@ class Stats:
         console.input("Appuyez sur entrée pour revenir au menu principal")
 
     """Display tournaments stats"""
+
     def display_tournaments(self):
         menu_table = Table()
         menu_table.add_column("[#F8961E]Tournoi[/]", justify="left", style="#90BE6D")
@@ -92,6 +94,60 @@ class Stats:
         table.add_column("[italic #F8961E]Id[/]", justify="left", style="#F94144")
         table.add_column("[italic #F8961E]Nom du tournoi[/]", justify="left", style="#277DA1")
         table.add_column("[italic #F8961E]Temps[/]", justify="center", style="#277DA1")
+        list_id = []
         for i in range(len(data)):
+            list_id.append(data[i][0])
             table.add_row(f"{data[i][0]}", f"{data[i][1]}", f"{data[i][2]}")
         console.print(table, justify="center")
+        while True:
+            try:
+                choice = int(console.input("[#277DA1]Sélectionner l'id d'un tournoi pour avoir plus d'informations: "))
+                if choice not in list_id:
+                    raise ValueError
+                else:
+                    return choice
+            except ValueError:
+                console.print("[bold red]Le tournoi choisi n'existe pas")
+
+    def display_tournament_players(self, data):
+        table = Table()
+        table.add_column("[italic #F8961E]Joueurs du tournoi[/]", justify="center", style="#F94144")
+        for i in range(len(data)):
+            table.add_row(f"{data[i]}")
+        console.print(table, justify="center")
+        console.input("Appuyez sur entrée pour revenir au menu principal")
+
+    def display_tournament_turns(self, turns_data):
+        table = Table()
+        table.add_column(f"[italic #F94144]Tours[/]", justify="left")
+        table.add_column(f"[italic #F94144]id des matchs[/]", justify="left")
+        for i in range(len(turns_data)):
+            """data for table"""
+            current_turn = turns_data[i][0]
+            match_id = turns_data[i][1]
+            """display matchs data"""
+            table.add_row(f"[bold #F8961E]Tour {current_turn}[/]",
+                          f"[bold #43AA8B]Matchs:[/] [bold #F9844A]{match_id}[/]")
+            table.add_row("")
+        console.print(table, justify="center")
+        console.input("Appuyez sur entrée pour revenir au menu principal")
+
+    def display_tournament_matchs(self, match_data):
+        table = Table()
+        table.add_column(f"[italic #F94144]Matchs[/]", justify="left")
+        table.add_column(f"[italic #F94144]Joueur 1[/]", justify="left")
+        table.add_column(f"[italic #F94144]Joueur 2[/]", justify="left")
+        for i in range(len(match_data)):
+            """data for table"""
+            current_match = match_data[i][0]
+            player_1 = match_data[i][1]
+            player_1_result = match_data[i][2]
+            player_2 = match_data[i][3]
+            player_2_result = match_data[i][4]
+            """display matchs data"""
+            table.add_row(f"[bold #F8961E]Match {current_match}[/]",
+                          f"[bold #43AA8B]{player_1}:[/] [bold #F9844A]{player_1_result}[/]",
+                          f"[bold #43AA8B]{player_2}:[/]  [bold #F9844A]{player_2_result}[/]")
+            table.add_row("")
+        console.print(table, justify="center")
+        console.input("Appuyez sur entrée pour revenir au menu principal")

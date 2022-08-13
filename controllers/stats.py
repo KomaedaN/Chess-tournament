@@ -2,6 +2,8 @@ from rich.console import Console
 from views.stats import Stats
 from models.tournament import Tournament
 from models.player import Player
+from models.match import Match
+from models.turn import Turn
 
 import os
 
@@ -56,20 +58,20 @@ class StatsController:
         choice = Stats().display_tournaments()
         if choice == 1:  # players name from tournament
             os.system('cls' if os.name == 'nt' else 'clear')
-            Stats().display_all_tournaments_id(data)
-            choice = int(console.input("[#277DA1]Sélectionner l'id d'un tournoi pour avoir plus d'informations: "))
+            choice = Stats().display_all_tournaments_id(data)
+            os.system('cls' if os.name == 'nt' else 'clear')
             StatsController().tournament_players(choice)
 
         elif choice == 2:  # turns from tournament
             os.system('cls' if os.name == 'nt' else 'clear')
-            Stats().display_all_tournaments_id(data)
-            choice = int(console.input("[#277DA1]Sélectionner l'id d'un tournoi pour avoir plus d'informations: "))
+            choice = Stats().display_all_tournaments_id(data)
+            os.system('cls' if os.name == 'nt' else 'clear')
             StatsController().tournament_turns(choice)
 
         elif choice == 3:  # matchs from tournament
             os.system('cls' if os.name == 'nt' else 'clear')
-            Stats().display_all_tournaments_id(data)
-            choice = int(console.input("[#277DA1]Sélectionner l'id d'un tournoi pour avoir plus d'informations: "))
+            choice = Stats().display_all_tournaments_id(data)
+            os.system('cls' if os.name == 'nt' else 'clear')
             StatsController().tournament_matchs(choice)
 
         elif choice == 4:  # return to stats menu
@@ -77,10 +79,14 @@ class StatsController:
             StatsController().menu()
 
     def tournament_players(self, choice):
-        pass
+        players_id = Tournament.get_data_from_tournament_id(choice, 'selected_players')
+        data = Player.get_name_from_id_list(players_id)
+        Stats().display_tournament_players(data)
 
     def tournament_turns(self, choice):
-        pass
+        turn_data = Turn.verify_tournament_id(choice)
+        Stats().display_tournament_turns(turn_data)
 
     def tournament_matchs(self, choice):
-        pass
+        match_data = Match.verify_tournament_id(choice)
+        Stats().display_tournament_matchs(match_data)

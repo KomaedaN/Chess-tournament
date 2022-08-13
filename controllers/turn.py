@@ -21,7 +21,6 @@ class TurnController:
                                                                      'selected_players')  # get players id
         number_of_rounds = Tournament.get_data_from_tournament_id(selected_tournament_id, 'number_of_rounds')
 
-        #  débuter le boucle for
         for o in range(number_of_rounds):
             """Serialized turn"""
             turn_data = Turn(selected_tournament_id, selected_players_id, number_of_rounds)

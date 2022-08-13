@@ -43,3 +43,19 @@ class Turn:
     @staticmethod
     def update_match_id(match_id_per_turn, turn_id):
         turns_table.update({'match_id': match_id_per_turn}, User.id == turn_id)
+
+    @staticmethod
+    def verify_tournament_id(id):
+        turn = turns_table.search(User.tournament_id == id)
+        if len(turn) <= 0:
+            input("Ce tournoi n'a pas encore commencé")
+        else:
+            list = []
+            for i in range(len(turn)):
+                reset_list = []
+                match_id = turn[i]['match_id']
+                current_turn = turn[i]['current_turn']
+                reset_list.append(current_turn)
+                reset_list.append(match_id)
+                list.append(reset_list)
+            return list
