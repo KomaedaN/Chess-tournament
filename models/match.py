@@ -1,4 +1,6 @@
+from models.player import Player
 from tinydb import TinyDB, Query
+import random
 
 User = Query()
 
@@ -39,28 +41,50 @@ class Match:
 
     @staticmethod
     def order_score_list(players, index):
-        for o in range(1, len(players)):
-            key = players[o]
-            j = o - 1
-            while j >= 0 and key[index] < players[j][index]:
-                players[j + 1] = players[j]
-                j -= 1
-            players[j + 1] = key
-        return players
+        group_list_1 = []
+        group_list_2 = []
+        for i in range(len(players)):
+            list = []
+            rank = players[i][0]
+            score = players[i][1]
+            list.append(score)
+            list.append(rank)
+            group_list_1.append(list)
+        order_score = sorted(group_list_1, reverse=True)
+        for o in range(len(order_score)):
+            order_list = []
+            rank = order_score[o][1]
+            score = order_score[o][0]
+            order_list.append(rank)
+            order_list.append(score)
+            group_list_2.append(order_list)
+        return group_list_2
 
     @staticmethod
-    def order_name(players_data, match_number):
+    def assign_match(players_data, match_number):
+        group_list = []
         players_number = len(players_data)
-        first_half_players = players_data[:players_number // match_number]
-        second_half_players = players_data[players_number // match_number:]
-        return first_half_players, second_half_players
 
-    @staticmethod
-    def order_id(players_data, match_number):
-        players_number = len(players_data)
-        first_half_players = players_data[:players_number // match_number]
-        second_half_players = players_data[players_number // match_number:]
-        return first_half_players, second_half_players
+        for i in range(match_number):
+            second_index = 1
+            match = []
+            player_1 = players_data[0]
+            player_2 = players_data[second_index]
+            player_versus = Player.players_versus(player_1)
+            if len(players_data) == 2:
+                match.append(player_2)
+                match.append(player_1)
+                group_list.append(match)
+                return group_list
+
+            while player_2 in player_versus:
+                second_index += 1
+                player_2 = players_data[second_index]
+            players_data.remove(player_1)
+            players_data.remove(player_2)
+            match.append(player_2)
+            match.append(player_1)
+            group_list.append(match)
 
     @staticmethod
     def get_match_id_per_turn(current_turn_id):
@@ -113,7 +137,6 @@ class Match:
                 reset_list.append(player_2_result)
                 list.append(reset_list)
             return list
-
 
     @staticmethod
     def update_players_score(player_name, player_result, match_id, index):

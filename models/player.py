@@ -16,7 +16,7 @@ class Player:
         self.rank = (len(TinyDB("db_player.json").table("players")) + 1)
         self.score = 0.0
         self.elo = 0.0
-        self.players_versus = []
+        self.player_versus = []
 
     def get_serialized_player(self):  # insert serialized player
         serialized_player = {
@@ -28,7 +28,7 @@ class Player:
             "rank": self.rank,
             "score": self.score,
             "elo": self.elo,
-            "players_versus": self.players_versus
+            "player_versus": self.player_versus
         }
         players_table.insert(serialized_player)
 
@@ -154,3 +154,60 @@ class Player:
             current_choice = selected_player[0]['name']
             list.append(current_choice)
         return list
+
+    @staticmethod
+    def update_player_versus(order_players_id):
+        for o in range(len(order_players_id)):
+            player_1 = order_players_id[o][0]
+            player_2 = order_players_id[o][1]
+
+            current_1 = players_table.search(User.rank == player_1)
+            current_2 = players_table.search(User.rank == player_2)
+
+            player_1_versus = current_1[0]['player_versus']
+            player_1_versus.append(player_2)
+
+            player_2_versus = current_2[0]['player_versus']
+            player_2_versus.append(player_1)
+
+            players_table.update({'player_versus': player_1_versus}, User.rank == player_1)
+            players_table.update({'player_versus': player_2_versus}, User.rank == player_2)
+
+    @staticmethod
+    def get_players_versus(list_id):
+        group_list = []
+        for i in range(len(list_id)):
+            list = []
+            current_player = players_table.search(User.id == list_id[i])
+            list.append(list_id[i])
+            list.append(current_player[0]['player_versus'])
+            group_list.append(list)
+        return group_list
+
+    @staticmethod
+    def players_versus(list_rank):
+        player_versus = players_table.search(User.rank == list_rank)
+        data = player_versus[0]['player_versus']
+        return data
+
+    @staticmethod
+    def order_name(data):
+        group_list = []
+        for i in range(len(data)):
+            list = []
+            current_match = data[i]
+            player_1 = players_table.search(User.id == current_match[0])
+            player_2 = players_table.search(User.id == current_match[1])
+
+            player_1_name = player_1[0]['name']
+            player_2_name = player_2[0]['name']
+
+            list.append(player_1_name)
+            list.append(player_2_name)
+            group_list.append(list)
+        return group_list
+
+    @staticmethod
+    def reset_player_versus(selected_players_id):
+        for i in range(len(selected_players_id)):
+            players_table.update({'player_versus': []}, User.id == selected_players_id[i])

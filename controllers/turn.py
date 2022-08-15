@@ -33,7 +33,8 @@ class TurnController:
             match_per_turn = int(len(selected_players_id) / 2)
 
             """create match"""
-            MatchController().generate_matchs(selected_players_id, match_per_turn, selected_tournament_id, turn_id)
+            MatchController().generate_matchs(selected_players_id, match_per_turn,
+                                              selected_tournament_id, turn_id, current_turn)
             get_match_id_per_turn = Match.get_match_id_per_turn(turn_id)
             Turn.update_match_id(get_match_id_per_turn, turn_id)
 
@@ -41,3 +42,4 @@ class TurnController:
 
             MatchController().start_match(get_match_id_per_turn, current_turn, match_number)
         Player.reset_player_score(selected_players_id)  # reset score after tournament
+        Player.reset_player_versus(selected_players_id)
