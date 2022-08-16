@@ -32,9 +32,6 @@ class Player:
         }
         players_table.insert(serialized_player)
 
-    def update_players_rank(self):  # update rank based on elo
-        pass
-
     @staticmethod
     def get_players_data():  # get players data for tournament creation
         players = players_table.all()
@@ -47,6 +44,14 @@ class Player:
             list_players.append(players[i]["rank"])
             players_data.append(list_players)
         return players_data
+
+    @staticmethod
+    def get_all_name():
+        players = players_table.all()
+        name_data = []
+        for i in range(len(players_table)):
+            name_data.append(players[i]['name'])
+        return name_data
 
     @staticmethod
     def get_data_from_players_id(players_id, table_information):
@@ -211,3 +216,20 @@ class Player:
     def reset_player_versus(selected_players_id):
         for i in range(len(selected_players_id)):
             players_table.update({'player_versus': []}, User.id == selected_players_id[i])
+
+    @staticmethod
+    def update_players_rank():
+        players = players_table.all()
+        rank_attribut = 1
+        for o in range(1, len(players)):
+            key = players[o]
+            j = o - 1
+            while j >= 0 and key['elo'] < players[j]['elo']:
+                players[j + 1] = players[j]
+                j -= 1
+            players[j + 1] = key
+
+        for i in reversed(players):
+            player_id = i['id']
+            players_table.update({'rank': rank_attribut}, User.id == player_id)
+            rank_attribut += 1

@@ -21,7 +21,7 @@ class TurnController:
                                                                      'selected_players')  # get players id
         number_of_rounds = Tournament.get_data_from_tournament_id(selected_tournament_id, 'number_of_rounds')
 
-        for o in range(number_of_rounds):
+        for o in range(number_of_rounds - 1):
             """Serialized turn"""
             turn_data = Turn(selected_tournament_id, selected_players_id, number_of_rounds)
             turn_data.get_serialized_turn()
@@ -41,5 +41,7 @@ class TurnController:
             match_number = int(len(selected_players_id) / 2)
 
             MatchController().start_match(get_match_id_per_turn, current_turn, match_number)
+        """at the end of the tournament, update players data"""
         Player.reset_player_score(selected_players_id)  # reset score after tournament
-        Player.reset_player_versus(selected_players_id)
+        Player.reset_player_versus(selected_players_id)  # reset versus id for each player
+        Player.update_players_rank()  # update players rank based on their elo

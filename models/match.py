@@ -61,9 +61,20 @@ class Match:
         return group_list_2
 
     @staticmethod
-    def assign_match(players_data, match_number):
+    def assign_match(players_data, match_number, current_turn):
         group_list = []
         players_number = len(players_data)
+        get_player_1 = int((players_number / 2) - 1)
+        if current_turn == 1:
+            for o in range(match_number):
+                first_turn = []
+                first_half_players = players_data[:players_number // 2]
+                second_half_players = players_data[players_number // 2:]
+                first_turn.append(second_half_players[get_player_1])
+                first_turn.append(first_half_players[o])
+                group_list.append(first_turn)
+                get_player_1 -= 1
+            return group_list
 
         for i in range(match_number):
             second_index = 1

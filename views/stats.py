@@ -44,14 +44,14 @@ class Stats:
 
     def display_players_by_name(self, data):
         table = Table()
-        table.add_column("[italic #F8961E]Nom[/]", justify="left", style="#F94144")
-        table.add_column("[italic #F8961E]Prenom[/]", justify="left", style="#277DA1")
-        table.add_column("[italic #F8961E]Rank[/]", justify="left", style="#277DA1")
-        table.add_column("[italic #F8961E]Elo[/]", justify="left", style="#277DA1")
+        table.add_column("[italic #F8961E]Nom[/]", justify="left", style="#90BE6D")
+        table.add_column("[italic #F8961E]Prenom[/]", justify="left", style="#90BE6D")
+        table.add_column("[italic #F8961E]Rank[/]", justify="center", style="#F3722C")
+        table.add_column("[italic #F8961E]Elo[/]", justify="center", style="#F3722C")
         for i in range(len(data)):
             table.add_row(f"{data[i][0]}", f"{data[i][1]}", f"{data[i][2]}", f"{data[i][3]}")
         console.print(table, justify="center")
-        console.input("Appuyez sur entrée pour revenir au menu principal")
+        console.input("[bold #43AA8B]Appuyez sur entrée pour revenir au menu principal")
 
     def order_by_rank(self, data):
         rank_list = []
@@ -62,14 +62,14 @@ class Stats:
 
     def display_players_by_rank(self, data):
         table = Table()
-        table.add_column("[italic #F8961E]Rank[/]", justify="left", style="#F94144")
-        table.add_column("[italic #F8961E]Nom[/]", justify="left", style="#277DA1")
-        table.add_column("[italic #F8961E]Prenom[/]", justify="left", style="#277DA1")
-        table.add_column("[italic #F8961E]Elo[/]", justify="left", style="#277DA1")
+        table.add_column("[italic #F8961E]Rank[/]", justify="center", style="#F3722C")
+        table.add_column("[italic #F8961E]Nom[/]", justify="left", style="#90BE6D")
+        table.add_column("[italic #F8961E]Prenom[/]", justify="left", style="#90BE6D")
+        table.add_column("[italic #F8961E]Elo[/]", justify="center", style="#F3722C")
         for i in range(len(data)):
             table.add_row(f"{data[i][0]}", f"{data[i][1]}", f"{data[i][2]}", f"{data[i][3]}")
         console.print(table, justify="center")
-        console.input("Appuyez sur entrée pour revenir au menu principal")
+        console.input("[bold #43AA8B]Appuyez sur entrée pour revenir au menu principal")
 
     """Display tournaments stats"""
 
@@ -92,8 +92,8 @@ class Stats:
     def display_all_tournaments_id(self, data):
         table = Table()
         table.add_column("[italic #F8961E]Id[/]", justify="left", style="#F94144")
-        table.add_column("[italic #F8961E]Nom du tournoi[/]", justify="left", style="#277DA1")
-        table.add_column("[italic #F8961E]Temps[/]", justify="center", style="#277DA1")
+        table.add_column("[italic #F8961E]Nom du tournoi[/]", justify="left", style="#F9844A")
+        table.add_column("[italic #F8961E]Temps[/]", justify="center", style="#90BE6D")
         list_id = []
         for i in range(len(data)):
             list_id.append(data[i][0])
@@ -101,7 +101,7 @@ class Stats:
         console.print(table, justify="center")
         while True:
             try:
-                choice = int(console.input("[#277DA1]Sélectionner l'id d'un tournoi pour avoir plus d'informations: "))
+                choice = int(console.input("[#43AA8B]Sélectionner l'id d'un tournoi pour avoir plus d'informations: "))
                 if choice not in list_id:
                     raise ValueError
                 else:
@@ -115,7 +115,7 @@ class Stats:
         for i in range(len(data)):
             table.add_row(f"{data[i]}")
         console.print(table, justify="center")
-        console.input("Appuyez sur entrée pour revenir au menu principal")
+        console.input("[bold #43AA8B]Appuyez sur entrée pour revenir au menu principal")
 
     def display_tournament_turns(self, turns_data):
         table = Table()
@@ -130,7 +130,7 @@ class Stats:
                           f"[bold #43AA8B]Matchs:[/] [bold #F9844A]{match_id}[/]")
             table.add_row("")
         console.print(table, justify="center")
-        console.input("Appuyez sur entrée pour revenir au menu principal")
+        console.input("[bold #43AA8B]Appuyez sur entrée pour revenir au menu principal")
 
     def display_tournament_matchs(self, match_data):
         table = Table()
@@ -150,4 +150,4 @@ class Stats:
                           f"[bold #43AA8B]{player_2}:[/]  [bold #F9844A]{player_2_result}[/]")
             table.add_row("")
         console.print(table, justify="center")
-        console.input("Appuyez sur entrée pour revenir au menu principal")
+        console.input("[bold #43AA8B]Appuyez sur entrée pour revenir au menu principal")

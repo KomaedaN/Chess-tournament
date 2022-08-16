@@ -4,8 +4,9 @@ from views.player import CreatePlayer
 
 class PlayerController:
     def create_player(self):
+        name_data = Player.get_all_name()
         """get all entries"""
-        name = CreatePlayer().name_entrie()
+        name = CreatePlayer().name_entrie(name_data)
         first_name = CreatePlayer().first_name_entrie()
         birthday = CreatePlayer().birthday_entrie()
         gender = CreatePlayer().gender_entrie()

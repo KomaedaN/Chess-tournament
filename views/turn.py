@@ -16,9 +16,9 @@ class Turns:
             match_counter = i + 1
             table.add_row("")
             table.add_row(
-                f"[italic underline #277DA1]Match {match_counter}[/]: [bold #F94144]{players[i][0]}[/] "
-                f"vs "
-                f"[bold #F94144]{players[i][1]}[/]")
+                f"[italic underline #277DA1]Match {match_counter}[/]: [bold #90BE6D]{players[i][0]}[/] "
+                f"[bold #F94144]vs[/] "
+                f"[bold #90BE6D]{players[i][1]}[/]")
             table.add_row("")
         console.print(table, justify="center")
         for i in range(match_number):
@@ -30,7 +30,9 @@ class Turns:
         while True:
             player = players[i]
             first_result_entrie = console.input(
-                f"Match {current_match}: Entrez le résultat de {player[0]} (Vous devez saisir V, D ou N): ").capitalize()
+                f"[bold #43AA8B]Match[/] [bold #F94144]{current_match}:[/] Entrez le résultat du joueur "
+                f"'{player[0]}' (Vous devez saisir [bold #90BE6D]V[/], [bold #F94144]D[/] ou [bold #277DA1]N[/]): ")\
+                .capitalize()
             try:
                 if re.match(regex, first_result_entrie):
                     raise FormatError
@@ -46,7 +48,9 @@ class Turns:
 
         while True:
             second_result_entrie = console.input(
-                f"Match {current_match}: Entrez le résultat de {player[1]} (Vous devez saisir V, D ou N): ").capitalize()
+                f"[bold #43AA8B]Match[/] [bold #F94144]{current_match}:[/] Entrez le résultat du joueur "
+                f"'{player[1]}' (Vous devez saisir [bold #90BE6D]V[/], [bold #F94144]D[/] ou [bold #277DA1]N[/]): ")\
+                .capitalize()
             try:
                 if re.match(regex, second_result_entrie):
                     raise ValueError

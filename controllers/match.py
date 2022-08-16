@@ -9,8 +9,9 @@ class MatchController:
         rank_list = Player.get_data_from_players_id(players_list, 'rank')
         order_players_by_rank = sorted(rank_list)
 
-        if current_turn == 1:
-            pass
+        """First turn based on players rank"""
+
+
         rank_score_list = Player.get_score_rank_list(order_players_by_rank)
         order_players_by_score = Match.order_score_list(rank_score_list, 1)
         """verifier la liste players_versus pour changer les matchs si besoin"""
@@ -21,7 +22,8 @@ class MatchController:
         list_id = Player.get_players_id(players_list_rank_score_id)
         players_versus = Player.get_players_versus(list_id)
 
-        order_players_id = Match.assign_match(list_id, match_number)
+        order_players_id = Match.assign_match(list_id, match_number, current_turn)
+
         order_players_name = Player.order_name(order_players_id)
 
         Player.update_player_versus(order_players_id)

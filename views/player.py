@@ -8,18 +8,22 @@ console = Console()
 
 
 class CreatePlayer:
-    def name_entrie(self):
+    def name_entrie(self, name_data):
         """Name regex"""
         while True:
             regex = "\A[a-zA-Z-]+\Z"
             name = console.input("[blue]Entrez le [bold green]NOM[/] du joueur: ").capitalize()
             try:
-                if re.match(regex, name):
+                if name in name_data:
+                    raise NameError
+                elif re.match(regex, name):
                     return name
                 else:
                     raise ValueError
             except ValueError:
                 console.print('[bold red]Vous ne pouvez pas rentrer de nombres ou de symboles (uniquement un "-")')
+            except NameError:
+                console.print('[bold red]Ce nom est deja utilisé')
 
     def first_name_entrie(self):
         """first_name regex"""
