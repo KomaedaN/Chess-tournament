@@ -119,8 +119,8 @@ class Stats:
 
     def display_tournament_turns(self, turns_data):
         table = Table()
-        table.add_column(f"[italic #F94144]Tours[/]", justify="left")
-        table.add_column(f"[italic #F94144]id des matchs[/]", justify="left")
+        table.add_column(f'{"[italic #F94144]Tours[/]"}', justify="left")
+        table.add_column(f'{"[italic #F94144]id des matchs[/]"}', justify="left")
         for i in range(len(turns_data)):
             """data for table"""
             current_turn = turns_data[i][0]
@@ -134,9 +134,9 @@ class Stats:
 
     def display_tournament_matchs(self, match_data):
         table = Table()
-        table.add_column(f"[italic #F94144]Matchs[/]", justify="left")
-        table.add_column(f"[italic #F94144]Joueur 1[/]", justify="left")
-        table.add_column(f"[italic #F94144]Joueur 2[/]", justify="left")
+        table.add_column(f'{"[italic #F94144]Matchs[/]"}', justify="left")
+        table.add_column(f'{"[italic #F94144]Joueur 1[/]"}', justify="left")
+        table.add_column(f'{"[italic #F94144]Joueur 2[/]"}', justify="left")
         for i in range(len(match_data)):
             """data for table"""
             current_match = match_data[i][0]

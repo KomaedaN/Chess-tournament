@@ -74,8 +74,8 @@ class NewTournament:
             id_list.append(id)
         while True:  # repeat input until you stop
             try:
-                id = int(console.input(f"sélectionner l'id des participants (saisir '[bold blue]0[/]' quand tous les "
-                                       f"joueurs sont séléctionnés): "))
+                id = int(console.input("sélectionner l'id des participants (saisir '[bold blue]0[/]'"
+                                       " quand tous les joueurs sont séléctionnés): "))
                 id_len = len(selected_players_list)
                 if id == 0:
                     if id_len % 2 == 0:  # verify if selected players list is a pair number

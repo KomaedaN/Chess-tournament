@@ -60,7 +60,8 @@ class Turns:
                     raise FailEntrie
                 elif second_result_entrie == "N" and first_result_entrie != "N":
                     raise FailEntrie
-                elif first_result_entrie == second_result_entrie and first_result_entrie != "N" and second_result_entrie != "N":
+                elif first_result_entrie == second_result_entrie and first_result_entrie != "N" and \
+                        second_result_entrie != "N":
                     raise FailEntrie
                 else:
                     score_number = Turns().convert_to_point(second_result_entrie)

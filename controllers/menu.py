@@ -3,10 +3,6 @@ from controllers.player import PlayerController
 from controllers.tournament import TournamentController
 from controllers.turn import TurnController
 from controllers.stats import StatsController
-from models.tournament import Tournament
-
-
-from tinydb import TinyDB
 
 import os
 

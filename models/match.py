@@ -1,6 +1,5 @@
 from models.player import Player
 from tinydb import TinyDB, Query
-import random
 
 User = Query()
 
@@ -119,13 +118,6 @@ class Match:
             group_list.append(player_2)
             name_list.append(group_list)
         return name_list
-
-    @staticmethod
-    def get_turn(data):
-        id = data[0]
-        current_match = match_table.search(User.id == id)
-        current_turn = current_match[0]['current_match']
-        return current_match
 
     @staticmethod
     def verify_tournament_id(id):

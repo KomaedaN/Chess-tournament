@@ -5,7 +5,6 @@ from models.match import Match
 
 from controllers.match import MatchController
 from views.tournament import NewTournament
-from views.turn import Turns
 
 
 class TurnController:
@@ -27,7 +26,7 @@ class TurnController:
             turn_data.get_serialized_turn()
 
             """get data for match table"""
-            players_name = Player.get_data_from_players_id(selected_players_id, 'name')  # get players name
+            #  players_name = Player.get_data_from_players_id(selected_players_id, 'name')  # get players name
             current_turn = Turn.get_current_turn(selected_tournament_id)
             turn_id = Turn.get_id_from_current_turn(selected_tournament_id, current_turn)
             match_per_turn = int(len(selected_players_id) / 2)

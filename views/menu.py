@@ -1,5 +1,4 @@
 from rich.console import Console
-from rich import print
 from rich.table import Table
 
 console = Console()
