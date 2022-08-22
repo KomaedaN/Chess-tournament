@@ -20,15 +20,15 @@ class NewTournament:
 
     def date_entrie(self):
         while True:
-            regex = "\A[^0-9/]+\Z"
-            date_entrie = console.input("[blue]Entrez la [bold green]DATE[/] du tournoi: ")
+            regex = r"\A[^0-9/]+\Z"
+            date_entrie = console.input("[blue]Entrez la [bold green]DATE[/] du tournoi au format 'JJ/MM/AAAA': ")
             try:
                 if re.match(regex, date_entrie):
                     raise ValueError
                 elif len(date_entrie) != 10:
-                    raise FormatError
+                    raise TypeError
                 elif date_entrie[2] != "/" or date_entrie[5] != "/":
-                    raise FormatError
+                    raise TypeError
                 elif date_entrie[0] == "/" or \
                         date_entrie[1] == "/" or \
                         date_entrie[3] == "/" or \
@@ -37,13 +37,13 @@ class NewTournament:
                         date_entrie[7] == "/" or \
                         date_entrie[8] == "/" or \
                         date_entrie[9] == "/":
-                    raise FormatError
+                    raise TypeError
                 else:
                     return date_entrie
             except ValueError:
                 console.print('[bold red]Vous ne pouvez pas entrer des lettres ou des symboles (sauf "/")')
 
-            except Exception as FormatError:
+            except TypeError:
                 console.print('[bold red]Vous devez rentrer la date du tournoi au format "DD/MM/YYYY')
 
     def description_entrie(self):  # tournament description
@@ -80,7 +80,7 @@ class NewTournament:
                 if id == 0:
                     if id_len % 2 == 0:  # verify if selected players list is a pair number
                         return selected_players_list
-                    raise LenError
+                    raise NameError
                 elif id not in id_list:  # error if id entrie is not inside players db
                     raise IndexError
                 selected_players_list.append(id)
@@ -89,7 +89,7 @@ class NewTournament:
                 console.print("[bold red]Vous devez saisir un id valide")
             except IndexError:
                 console.print("[bold red]Vous devez saisir un id dans la liste")
-            except Exception as LenError:
+            except NameError:
                 console.print("[bold red]Vous devez saisir un nombre paire de joueurs avant de pouvoir valider")
 
     def number_of_rounds_entrie(self, rounds):  # verify maxmimum rounds numbers with maximum rounds

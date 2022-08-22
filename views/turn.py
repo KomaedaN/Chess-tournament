@@ -35,15 +35,15 @@ class Turns:
                 .capitalize()
             try:
                 if re.match(regex, first_result_entrie):
-                    raise FormatError
+                    raise ValueError
                 elif len(first_result_entrie) != 1:
-                    raise FormatError
+                    raise ValueError
                 else:
                     score_number = Turns().convert_to_point(first_result_entrie)
                     Player.update_player_score(player[0], score_number)
                     Match.update_players_score(player[0], score_number, match_id[i], 'player_1_result')
                     break
-            except Exception as FormatError:
+            except ValueError:
                 print('[bold red]Vous devez saisir [#d90429]V[/], [#d90429]D[/] ou [#d90429]N[/] uniquement')
 
         while True:
@@ -57,12 +57,12 @@ class Turns:
                 elif len(second_result_entrie) != 1:
                     raise ValueError
                 elif first_result_entrie == "N" and second_result_entrie != "N":
-                    raise FailEntrie
+                    raise NameError
                 elif second_result_entrie == "N" and first_result_entrie != "N":
-                    raise FailEntrie
+                    raise NameError
                 elif first_result_entrie == second_result_entrie and first_result_entrie != "N" and \
                         second_result_entrie != "N":
-                    raise FailEntrie
+                    raise NameError
                 else:
                     score_number = Turns().convert_to_point(second_result_entrie)
                     Player.update_player_score(player[1], score_number)
@@ -71,7 +71,7 @@ class Turns:
             except ValueError:
                 console.print('[bold red]Vous devez saisir [#d90429]V[/], [#d90429]D[/] ou [#d90429]N[/] uniquement')
 
-            except Exception as FailEntrie:
+            except NameError:
                 console.print('[bold red]Vous devez saisir le résultat [#d90429]valide[/]')
 
     def convert_to_point(self, player_result):
