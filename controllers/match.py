@@ -12,7 +12,6 @@ class MatchController:
 
         rank_score_list = Player.get_score_rank_list(order_players_by_rank)
         order_players_by_score = Match.order_score_list(rank_score_list, 1)
-        """verifier la liste players_versus pour changer les matchs si besoin"""
 
         players_list_rank_score_id = Player.add_players_id(order_players_by_score)
 
