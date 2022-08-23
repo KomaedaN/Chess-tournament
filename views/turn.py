@@ -9,7 +9,7 @@ console = Console()
 
 
 class Turns:
-    def display_turns(self, players, current_turn, match_number, match_id):
+    def display_turns(self, players, current_turn, match_number, match_id):  # display all matchs from a turn
         table = Table()
         table.add_column(f"[#F3722C]Tour {current_turn}[/]", justify="center", style="#277DA1")
         for i in range(match_number):
@@ -25,7 +25,7 @@ class Turns:
             current_match = i + 1
             Turns().score_result(current_match, players, i, match_id)
 
-    def score_result(self, current_match, players, i, match_id):
+    def score_result(self, current_match, players, i, match_id):  # result entrie regex
         regex = "[^VDNvdn]"
         while True:
             player = players[i]
@@ -74,7 +74,7 @@ class Turns:
             except NameError:
                 console.print('[bold red]Vous devez saisir le résultat [#d90429]valide[/]')
 
-    def convert_to_point(self, player_result):
+    def convert_to_point(self, player_result):  # convert result entrie into point
         if player_result == "V":
             return 1
         elif player_result == "D":

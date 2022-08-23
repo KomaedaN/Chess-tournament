@@ -1,6 +1,8 @@
 from rich.console import Console
 from rich.table import Table
 
+import os
+
 console = Console()
 
 
@@ -8,6 +10,7 @@ class MainMenu:
     """display main menu"""
 
     def menu_input(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
         console.rule("[bold #F3722C]MENU PRINCIPAL", style="#F9C74F")
         table = Table()
         table.add_column("[#F8961E]TOURNOI D'ECHEC [/]", justify="left", style="#90BE6D")

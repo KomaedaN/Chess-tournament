@@ -13,12 +13,12 @@ class NewTournament:
         return name
 
     def place_entrie(self):  # tournament place
-        place = console.input("[blue]Entrez le [bold green]Lieu[/] du tournoi: ")
+        place = console.input("[blue]Entrez le [bold green]Lieu[/] du tournoi: ").capitalize()
         return place
 
     """tournament date regex"""
 
-    def date_entrie(self):
+    def date_entrie(self):  # date regex
         while True:
             regex = r"\A[^0-9/]+\Z"
             date_entrie = console.input("[blue]Entrez la [bold green]DATE[/] du tournoi au format 'JJ/MM/AAAA': ")
@@ -102,7 +102,7 @@ class NewTournament:
             else:
                 return number_of_rounds
 
-    def display_tournament(self, tournaments_data):
+    def display_tournament(self, tournaments_data):  # display tournament id, name, time and turns
         table = Table()
         table.add_column("[italic #F8961E]Id[/]", justify="left", style="#F94144")
         table.add_column("[italic #F8961E]Nom du tournoi[/]", justify="left", style="#277DA1")
@@ -113,7 +113,7 @@ class NewTournament:
                           f"{tournaments_data[i][3]}")
         console.print(table, justify="center")
 
-    def selected_tournament(self, tournaments_id):
+    def selected_tournament(self, tournaments_id):  # verify tournament id entrie
         while True:
             id_entrie = console.input("[blue]Sélectionner l'id du tournoi pour le démarrer: ")
             try:

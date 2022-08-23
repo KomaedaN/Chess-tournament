@@ -42,7 +42,8 @@ class CreatePlayer:
         """birthday regex"""
         while True:
             regex = r"\A[^0-9/]+\Z"
-            birthday_entrie = console.input("[blue]Entrez la [bold green]DATE[/] de naissance du joueur: ")
+            birthday_entrie = console.input("[blue]Entrez la [bold green]DATE[/] de naissance du joueur au format "
+                                            "'JJ/MM/AAAA': ")
             try:
                 if re.match(regex, birthday_entrie):
                     raise ValueError
@@ -82,7 +83,7 @@ class CreatePlayer:
             except ValueError:
                 print('[bold red]Vous devez sélectionner entre [#d90429]M[/] et [#d90429]F[/] uniquement')
 
-    def display_players(self, players_table_data):
+    def display_players(self, players_table_data):  # display id, players and rank
         table = Table()
         table.add_column("[italic #F8961E]Id[/]", justify="left", style="#F94144")
         table.add_column("[italic #F8961E]Joueurs[/]", justify="left", style="#277DA1")

@@ -21,7 +21,7 @@ class Stats:
 
     """Display players stats"""
 
-    def display_players(self):
+    def display_players(self):  # players stats menu
         menu_table = Table()
         menu_table.add_column("[#F8961E]Joueurs[/]", justify="left", style="#90BE6D")
         menu_table.add_row("")
@@ -42,7 +42,7 @@ class Stats:
             name_list.append(name)
         return sorted(name_list)
 
-    def display_players_by_name(self, data):
+    def display_players_by_name(self, data):  # players stats sorted by name
         table = Table()
         table.add_column("[italic #F8961E]Nom[/]", justify="left", style="#90BE6D")
         table.add_column("[italic #F8961E]Prenom[/]", justify="left", style="#90BE6D")
@@ -60,7 +60,7 @@ class Stats:
             rank_list.append(rank)
         return sorted(rank_list)
 
-    def display_players_by_rank(self, data):
+    def display_players_by_rank(self, data):  # players stats sorted by rank
         table = Table()
         table.add_column("[italic #F8961E]Rank[/]", justify="center", style="#F3722C")
         table.add_column("[italic #F8961E]Nom[/]", justify="left", style="#90BE6D")
@@ -73,7 +73,7 @@ class Stats:
 
     """Display tournaments stats"""
 
-    def display_tournaments(self):
+    def display_tournaments(self):  # tournament stats menu
         menu_table = Table()
         menu_table.add_column("[#F8961E]Tournoi[/]", justify="left", style="#90BE6D")
         menu_table.add_row("")
@@ -89,7 +89,7 @@ class Stats:
         choice = int(console.input("[#277DA1]Entrez votre choix: "))
         return choice
 
-    def display_all_tournaments_id(self, data):
+    def display_all_tournaments_id(self, data):  # tournaments id
         table = Table()
         table.add_column("[italic #F8961E]Id[/]", justify="left", style="#F94144")
         table.add_column("[italic #F8961E]Nom du tournoi[/]", justify="left", style="#F9844A")
@@ -109,7 +109,7 @@ class Stats:
             except ValueError:
                 console.print("[bold red]Le tournoi choisi n'existe pas")
 
-    def display_tournament_players(self, data):
+    def display_tournament_players(self, data):  # selected players from a tournament
         table = Table()
         table.add_column("[italic #F8961E]Joueurs du tournoi[/]", justify="center", style="#F94144")
         for i in range(len(data)):
@@ -117,7 +117,7 @@ class Stats:
         console.print(table, justify="center")
         console.input("[bold #43AA8B]Appuyez sur entrée pour revenir au menu principal")
 
-    def display_tournament_turns(self, turns_data):
+    def display_tournament_turns(self, turns_data):  # all turns from a tournament
         table = Table()
         table.add_column(f'{"[italic #F94144]Tours[/]"}', justify="left")
         table.add_column(f'{"[italic #F94144]id des matchs[/]"}', justify="left")
@@ -132,7 +132,7 @@ class Stats:
         console.print(table, justify="center")
         console.input("[bold #43AA8B]Appuyez sur entrée pour revenir au menu principal")
 
-    def display_tournament_matchs(self, match_data):
+    def display_tournament_matchs(self, match_data):  # all matchs from a tournament
         table = Table()
         table.add_column(f'{"[italic #F94144]Matchs[/]"}', justify="left")
         table.add_column(f'{"[italic #F94144]Joueur 1[/]"}', justify="left")
