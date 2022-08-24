@@ -24,4 +24,4 @@ Features of the application:
 
 Generate a flake8 report:
 -
-- To generate a new flake8-html file, enter the command: "flake8 --format=html --htmldir=flake-report"
+- To generate a new flake8-html file enter the command: "flake8 --format=html --htmldir=flake-report"
