@@ -1,8 +1,11 @@
+from models.player import Player
+from models.match import Match
+
 from rich.console import Console
 from rich import print
 from rich.table import Table
-from models.player import Player
-from models.match import Match
+
+import os
 import re
 
 console = Console()
@@ -10,6 +13,7 @@ console = Console()
 
 class Turns:
     def display_turns(self, players, current_turn, match_number, match_id):  # display all matchs from a turn
+        os.system('cls' if os.name == 'nt' else 'clear')
         table = Table()
         table.add_column(f"[#F3722C]Tour {current_turn}[/]", justify="center", style="#277DA1")
         for i in range(match_number):

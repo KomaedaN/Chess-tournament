@@ -72,7 +72,7 @@ class CreatePlayer:
         """gender regex"""
         while True:
             regex = "[^MFmf]"
-            gender = console.input("[blue]Entrez le [bold green]GENRE[/] du joueur: ").capitalize()
+            gender = console.input("[blue]Entrez le [bold green]GENRE[/] du joueur (M ou F): ").capitalize()
             try:
                 if re.match(regex, gender):
                     raise ValueError
