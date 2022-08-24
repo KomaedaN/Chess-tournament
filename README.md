@@ -1,26 +1,27 @@
-Préparer l'application:
+Prepare the application:
 -
-- Créer un environnement virtuel avec "python -m venv env" dans le dossier "tournoi_echec"
+- Create a virtual environment with "python -m venv env" in the "chess tournament" folder
 
-- Entrez la commande "env/Scripts/activate.ps1" pour rentrer dans l'environnement virtuel
+- Enter the command "env/scripts/activate Pas1" to enter the virtual environment
 
-- Installez ensuite les packages avec la commande "pip install -r requirements.txt"
+- Then install the packages with the command "pip install -r requirements Txt"
 
-- Pour générer un nouveau fichier flake8-html, entrez la commande: "flake8 --format=html --htmldir=flake-report"
+- Launch the application: "python main Py"
 
-- Lancer l'application: "python main.py"
-
-Résumé:
+Summary:
 - 
 - "python -m venv env"
-- "env/Scripts/activate.ps1"
-- "pip install -r requirements.txt"
-- "flake8 --format=html --htmldir=flake-report"
-- "python main.py"
+- "env/Scripts/activate Pas1"
+- "pip install -r requirements Txt"
+- "python main Py"
 
-Fonctionnalités de l'application:
+Features of the application:
 -
-- Vous pouvez ajouter des joueurs
-- Créer des tournois d'échecs
-- Lancer les tournois et entrer le résultat des matchs
-- Voir les données des joueurs et des tournois
+- You can create players
+- Create chess tournaments
+- Launch tournaments and enter matchs results
+- View players and tournaments data
+
+Generate a flake8 report:
+-
+- To generate a new flake8-html file, enter the command: "flake8 --format=html --htmldir=flake-report"
